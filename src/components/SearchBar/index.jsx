@@ -20,7 +20,7 @@ function SearchBar({ value }) {
       ref={inputRef}
       className={classNames(
         "p-2 border-2 border-gray-400 rounded-full w-1/4 text-center bg-[#181a1b] text-white",
-        inputValue.length > 0 ? "border-green-500" : "border-red-500"
+        inputValue.length > 0 ? "border-green-500" : "border-red-800"
       )}
       type="text"
       placeholder="Search..."

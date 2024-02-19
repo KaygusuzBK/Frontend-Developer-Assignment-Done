@@ -39,16 +39,6 @@ function Home() {
     setTotalPages(Math.ceil(filteredCountries.length / 12));
   }, [filteredCountries]);
 
-  useEffect(() => {
-    if (filteredCountries.length > 0) {
-      setCurrentPage(1);
-      if (selectedCardId === null) {
-        // Filtrelenmiş ülkelerden 10. elemanı seç
-        setSelectedCardId(filteredCountries[9].code);
-      }
-    }
-  }, [filteredCountries, selectedCardId]);
-
   return (
     <>
       <div className="container mx-auto">
@@ -61,7 +51,6 @@ function Home() {
             setCurrentPage={setCurrentPage}
             totalPages={totalPages}
             countries={filteredCountries}
-            selectedCardId={selectedCardId} // Seçili kartı props olarak geç
           />
         </div>
       </div>

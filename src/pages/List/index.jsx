@@ -116,12 +116,14 @@ CountryList.propTypes = {
   currentPage: PropTypes.number.isRequired,
   setCurrentPage: PropTypes.func.isRequired,
   totalPages: PropTypes.number.isRequired,
-  countries: PropTypes.arrayOf(
-    PropTypes.shape({
-      code: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-    })
-  ).isRequired,
+  countries: PropTypes.array.isRequired,
+};
+
+CountryList.defaultProps = {
+  currentPage: 1,
+  setCurrentPage: () => {},
+  totalPages: 0,
+  countries: [],
 };
 
 export default CountryList;
