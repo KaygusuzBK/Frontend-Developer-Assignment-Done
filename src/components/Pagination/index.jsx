@@ -39,7 +39,7 @@ function PaginationSelect({ currentPage, totalPages, handlePageChange }) {
             (page) => (
               <button
                 key={page}
-                className={`p-2 rounded-lg border w-10 h-10 ${
+                className={`p-2 rounded-lg border w-10 h-10 hover:bg-black hover:text-white font-bold ${
                   currentPage === page
                     ? "bg-[#181a1b] text-white"
                     : "bg-white text-black"
