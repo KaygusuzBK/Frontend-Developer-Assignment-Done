@@ -20,7 +20,7 @@ function CountryCard({ country, selectedColor, selectedCardId, OnClickCard }) {
         src={`https://flagpedia.net/data/flags/w580/${country.code.toLowerCase()}.webp`}
         alt={country.name}
       />
-      <div className="flex flex-col justify-center items-center p-2">
+      <div className="flex flex-col justify-start items-start p-2">
         <div className="font-semibold mt-2 xl:text-md lg:text-sm md:text-sm sm:text-xs">
           Country: {country.name} ({country.code})
         </div>

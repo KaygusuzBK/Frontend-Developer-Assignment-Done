@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CountryCard from "~/components/Card";
-import PaginationSelect from "~/components/Pagenation";
+import PaginationSelect from "~/components/Pagination";
 import PropTypes from "prop-types";
 
 function CountryList({ currentPage, setCurrentPage, totalPages, countries }) {
@@ -18,6 +18,19 @@ function CountryList({ currentPage, setCurrentPage, totalPages, countries }) {
       }
     }
   }, [currentPage, countries]);
+
+  useEffect(() => {
+    if (currentPage !== 1) {
+      if (currentPage >= totalPages) {
+        const startIndex = (currentPage - 1) * 12;
+        setSelectedCardId(countries[startIndex].code); //
+      } else {
+        setSelectedCardId(countries[(currentPage - 1) * 12 + 9].code);
+      }
+    } else {
+      setSelectedCardId(countries[9].code);
+    }
+  }, [currentPage, totalPages, countries]);
 
   useEffect(() => {
     setSelectedColor(randomColor());

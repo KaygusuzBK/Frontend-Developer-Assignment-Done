@@ -11,7 +11,7 @@ function Home() {
   const [value, setValue] = useState("");
   const [filteredCountries, setFilteredCountries] = useState([]);
   const [selectedCardId, setSelectedCardId] = useState(null);
-  const [loading, setLoading] = useState(true); // Loading durumunu tutmak için bir state ekleyin
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getCountries().then((response) => {
@@ -19,7 +19,7 @@ function Home() {
       setCountries(fetchedCountries);
       setFilteredCountries(fetchedCountries);
       setTotalPages(Math.ceil(fetchedCountries.length / 12));
-      setLoading(false); 
+      setLoading(false);
     });
   }, []);
 
@@ -49,8 +49,8 @@ function Home() {
           <SearchBar value={handleValueChange} />
         </div>
         <div className="flex-col justify-center m-7">
-          {loading ? ( // Loading durumunu kontrol edin
-            <LoadingSpinner /> // Yükleme sürerken gösterilecek bileşen
+          {loading ? (
+            <LoadingSpinner /> //
           ) : (
             <CountryList
               currentPage={currentPage}
