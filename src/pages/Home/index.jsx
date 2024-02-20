@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getCountries } from "../../services";
 import SearchBar from "../../components/SearchBar";
 import CountryList from "../List/index.jsx";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 function Home() {
   const [countries, setCountries] = useState([]);
@@ -10,6 +11,7 @@ function Home() {
   const [value, setValue] = useState("");
   const [filteredCountries, setFilteredCountries] = useState([]);
   const [selectedCardId, setSelectedCardId] = useState(null);
+  const [loading, setLoading] = useState(true); // Loading durumunu tutmak için bir state ekleyin
 
   useEffect(() => {
     getCountries().then((response) => {
@@ -17,12 +19,13 @@ function Home() {
       setCountries(fetchedCountries);
       setFilteredCountries(fetchedCountries);
       setTotalPages(Math.ceil(fetchedCountries.length / 12));
+      setLoading(false); 
     });
   }, []);
 
   const handleValueChange = (value) => {
     setValue(value);
-    setSelectedCardId(null); // Her yeni arama yapıldığında seçili kartı sıfırla
+    setSelectedCardId(null);
   };
 
   const getFilteredCountries = () => {
@@ -33,7 +36,7 @@ function Home() {
 
   useEffect(() => {
     setFilteredCountries(getFilteredCountries());
-  }, [value, countries]); // "value" ve "countries" değiştiğinde filtreleme yap
+  }, [value, countries]);
 
   useEffect(() => {
     setTotalPages(Math.ceil(filteredCountries.length / 12));
@@ -46,12 +49,16 @@ function Home() {
           <SearchBar value={handleValueChange} />
         </div>
         <div className="flex-col justify-center m-7">
-          <CountryList
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-            totalPages={totalPages}
-            countries={filteredCountries}
-          />
+          {loading ? ( // Loading durumunu kontrol edin
+            <LoadingSpinner /> // Yükleme sürerken gösterilecek bileşen
+          ) : (
+            <CountryList
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+              totalPages={totalPages}
+              countries={filteredCountries}
+            />
+          )}
         </div>
       </div>
     </>
